@@ -1,4 +1,4 @@
 package com.dodo.dodoworld.domain;
 
-public class Order {
+public class Order extends BaseEntity {
 }

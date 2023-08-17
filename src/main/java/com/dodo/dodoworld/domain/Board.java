@@ -9,8 +9,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"id", "boardCategories", "title", "content", "isDeleted"})
-public class Board {
+@ToString(of = {"id", "boardCategories", "title", "content", "like", "isDeleted"})
+public class Board extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "board_id")
@@ -24,7 +24,10 @@ public class Board {
 
     private String title;
 
+    private int like = 0;
+
     private Boolean isDeleted = false;
+
 
     @Lob
     @Column(columnDefinition = "CLOB")

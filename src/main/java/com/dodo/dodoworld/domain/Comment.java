@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"writer", "content", "parent", "child", "isDeleted"})
-public class Comment {
+@ToString(of = {"writer", "content", "parent", "child", "like", "isDeleted"})
+public class Comment extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "comment_id")
@@ -30,6 +30,8 @@ public class Comment {
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
     private List<Comment> child = new ArrayList<>();
+
+    private int like = 0;
 
     private Boolean isDeleted = false;
 
