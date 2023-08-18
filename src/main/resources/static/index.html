@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>인덱스 페이지</title>
 </head>
 <body>
-    <h1 th:text="Index Page">index</h1>
+    <th:block layout:fragment="content">
+        <h1>레이아웃 적용한 인덱스 페이지 ㅇㅇ</h1>
+    </th:block>
+
 </body>
 </html>

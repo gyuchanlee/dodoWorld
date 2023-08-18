@@ -9,7 +9,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"id", "boardCategories", "title", "content", "like", "isDeleted"})
+@ToString(of = {"id", "boardCategories", "title", "content", "likes", "isDeleted"})
 public class Board extends BaseEntity {
 
     @Id @GeneratedValue
@@ -24,7 +24,7 @@ public class Board extends BaseEntity {
 
     private String title;
 
-    private int like = 0;
+    private int likes = 0;
 
     private Boolean isDeleted = false;
 

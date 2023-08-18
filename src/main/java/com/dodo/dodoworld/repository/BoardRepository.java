@@ -18,6 +18,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Page<Board> findAll(Pageable pageable);
 
     // 개추 버튼
-    @Query("update Board b set b.like = (b.like + 1) where b.id = :boardId")
+    @Query("update Board b set b.likes = (b.likes + 1) where b.id = :boardId")
     void plusLike(@Param("boardId") Long boardId);
 }
