@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>BoardList</title>
 </head>
-<body>
-    <h1>BoardList</h1>
-    <p th:text="${data}"></p>
+    <body>
+    <th:block layout:fragment="content">
+        <h1>BoardList</h1>
+        <p th:text="${data}"></p>
+    </th:block>
 </body>
 </html>

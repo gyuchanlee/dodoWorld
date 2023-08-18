@@ -1,6 +1,7 @@
 package com.dodo.dodoworld;
 
 import jakarta.annotation.PostConstruct;
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
