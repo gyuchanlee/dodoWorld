@@ -1,18 +1,19 @@
 package com.dodo.dodoworld.web;
 
+import com.dodo.dodoworld.domain.Address;
 import com.dodo.dodoworld.domain.Board;
+import com.dodo.dodoworld.domain.Member;
 import com.dodo.dodoworld.repository.SearchCondition;
 import com.dodo.dodoworld.service.BoardService;
+import com.dodo.dodoworld.web.dto.board.CreateBoardDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class BoardController {
     public String boards(Model model) {
         List<Board> boards = boardService.findBoards(new SearchCondition());
         // 반환용 dto 사용.
-        model.addAttribute("data", "data");
+        model.addAttribute("boards", boards);
         return "board/boardList";
     }
 
@@ -46,16 +47,21 @@ public class BoardController {
 
     // 게시글 등록 페이지
     @GetMapping("/boards/save")
-    public String boardSavePage(Board board) {
-        return "board/boardEdit";
+    public String boardSavePage(Board board, Model model) {
+//        model.addAttribute("board", board);
+        return "board/boardCreate";
     }
 
 
     // 게시글 등록
     @PostMapping("/boards/save")
-    public String boardSave(Board board) {
+    public String boardSave(@ModelAttribute("board") CreateBoardDto dto) {
+        // test용 임시 아이디
+        Member member = new Member(dto.getWriter(), "1234", dto.getWriter(), "dodo@gmail.com", LocalDateTime.now(),
+                new Address("Seoul", "Gwan-Ak", "MiSung-dong", "123-123"), null);
+        Board board = new Board(member, dto.getBoardCategories(), dto.getTitle(), dto.getContent());
         boardService.save(board);
-        return "redirect:board/boardList";
+        return "redirect:/boards";
     }
 
     // 게시글 수정 페이지

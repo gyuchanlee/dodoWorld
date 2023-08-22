@@ -20,6 +20,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void save(Board board) {
         log.info("게시글 저장");
+        log.info("board info ={}", board);
     }
 
     @Override

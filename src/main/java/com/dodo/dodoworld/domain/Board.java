@@ -28,6 +28,12 @@ public class Board extends BaseEntity {
 
     private Boolean isDeleted = false;
 
+    public Board(Member writer, BoardCategories boardCategories, String title, String content) {
+        this.writer = writer;
+        this.boardCategories = boardCategories;
+        this.title = title;
+        this.content = content;
+    }
 
     @Lob
     @Column(columnDefinition = "CLOB")
