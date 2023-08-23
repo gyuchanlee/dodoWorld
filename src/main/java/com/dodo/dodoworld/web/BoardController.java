@@ -5,6 +5,7 @@ import com.dodo.dodoworld.domain.Board;
 import com.dodo.dodoworld.domain.Member;
 import com.dodo.dodoworld.repository.SearchCondition;
 import com.dodo.dodoworld.service.BoardService;
+import com.dodo.dodoworld.service.MemberService;
 import com.dodo.dodoworld.web.dto.board.CreateBoardDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class BoardController {
      */
 
     private final BoardService boardService;
+    private final MemberService memberService;
 
     // 게시판 목록
     @GetMapping("/boards")
@@ -47,8 +49,7 @@ public class BoardController {
 
     // 게시글 등록 페이지
     @GetMapping("/boards/save")
-    public String boardSavePage(Board board, Model model) {
-//        model.addAttribute("board", board);
+    public String boardSavePage(Board board) {
         return "board/boardCreate";
     }
 
@@ -59,6 +60,7 @@ public class BoardController {
         // test용 임시 아이디
         Member member = new Member(dto.getWriter(), "1234", dto.getWriter(), "dodo@gmail.com", LocalDateTime.now(),
                 new Address("Seoul", "Gwan-Ak", "MiSung-dong", "123-123"), null);
+        memberService.saveMember(member);
         Board board = new Board(member, dto.getBoardCategories(), dto.getTitle(), dto.getContent());
         boardService.save(board);
         return "redirect:/boards";

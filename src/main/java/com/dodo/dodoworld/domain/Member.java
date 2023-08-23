@@ -25,7 +25,7 @@ public class Member extends BaseTimeEntity {
     private String email;
     private LocalDateTime birth;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address address;
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
