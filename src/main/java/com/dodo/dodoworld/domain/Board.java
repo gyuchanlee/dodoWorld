@@ -39,5 +39,12 @@ public class Board extends BaseEntity {
     @Column(columnDefinition = "CLOB")
     private String content;
 
+    // 글 업데이트
+    public void updateBoard(BoardCategories boardCategories, String title, String content) {
+        this.boardCategories = boardCategories;
+        this.title = title;
+        this.content = content;
+    }
+
 
 }
