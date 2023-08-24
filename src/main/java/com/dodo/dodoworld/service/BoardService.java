@@ -12,7 +12,7 @@ public interface BoardService {
 
     List<Board> findBoards(SearchCondition searchCondition); // 글 검색
 
-    Optional<Board> findOne(Board board); // 글 하나 검색
+    Optional<Board> findOne(Long boardId); // 글 하나 검색
 
     void update(Board board); // 글 수정
 

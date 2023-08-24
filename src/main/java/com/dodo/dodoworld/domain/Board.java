@@ -35,6 +35,11 @@ public class Board extends BaseEntity {
         this.content = content;
     }
 
+    // 검증용으로 생성페이지 리다이렉트할때 필요
+    public Board(String title) {
+        this.title = title;
+    }
+
     @Lob
     @Column(columnDefinition = "CLOB")
     private String content;

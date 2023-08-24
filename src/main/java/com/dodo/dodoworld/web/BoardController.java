@@ -21,6 +21,7 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/boards")
 public class BoardController {
     /**
      * 게시판 컨트롤러
@@ -30,7 +31,7 @@ public class BoardController {
     private final MemberService memberService;
 
     // 게시판 목록
-    @GetMapping("/boards")
+    @GetMapping()
     public String boards(Model model) {
         List<Board> boards = boardService.findBoards(new SearchCondition());
         // 반환용 dto 사용.
@@ -39,23 +40,24 @@ public class BoardController {
     }
 
     // 게시판 한글 읽기
-    @GetMapping("/boards/{id}")
-    public String board(Model model, Board board) {
-        Optional<Board> findBoard = boardService.findOne(board);
+    @GetMapping("/{id}")
+    public String board(Model model, @PathVariable("id") Long boardId) {
+        Optional<Board> findBoard = boardService.findOne(boardId);
         // dto 변환 후 보내기
-        model.addAttribute("board", findBoard);
+        model.addAttribute("board", findBoard.get());
         return "board/boardOne";
     }
 
     // 게시글 등록 페이지
-    @GetMapping("/boards/save")
-    public String boardSavePage(Board board) {
-        return "board/boardCreate";
+    @GetMapping("/save")
+    public String boardSavePage(Model model) {
+        model.addAttribute("board", new Board("insert title"));
+        return "board/boardSave";
     }
 
 
     // 게시글 등록
-    @PostMapping("/boards/save")
+    @PostMapping("/save")
     public String boardSave(@ModelAttribute("board") CreateBoardDto dto) {
         // test용 임시 아이디
         Member member = new Member(dto.getWriter(), "1234", dto.getWriter(), "dodo@gmail.com", LocalDateTime.now(),
@@ -67,20 +69,20 @@ public class BoardController {
     }
 
     // 게시글 수정 페이지
-    @GetMapping("/boards/{id}/edit")
+    @GetMapping("/{id}/edit")
     public String boardUpdatePage(Board board) {
         return "board/boardEdit";
     }
 
     // 게시글 수정
-    @PutMapping("/boards/{id}/edit")
+    @PutMapping("/{id}/edit")
     public String boardUpdate(Board board) {
         boardService.update(board);
         return "redirect:/boards";
     }
 
     // 게시글 삭제
-    @DeleteMapping("/boards/{id}")
+    @DeleteMapping("/{id}")
     public String boardDelete(Board board) {
         boardService.delete(board);
         return "redirect:/boards";
