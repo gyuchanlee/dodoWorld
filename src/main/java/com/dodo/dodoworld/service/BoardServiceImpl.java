@@ -35,9 +35,9 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Optional<Board> findOne(Board board) {
+    public Optional<Board> findOne(Long boardId) {
         log.info("글 하나 검색");
-        return boardRepository.findById(board.getId());
+        return boardRepository.findById(boardId);
     }
 
     @Override
