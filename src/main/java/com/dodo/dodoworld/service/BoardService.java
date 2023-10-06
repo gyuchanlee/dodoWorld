@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface BoardService {
 
+    // controller -> service 단계에서 dto를 받아 엔티티를 repo로 보내주기.
+
     void save(Board board); // 글 작성
 
     List<Board> findBoards(SearchCondition searchCondition); // 글 검색
