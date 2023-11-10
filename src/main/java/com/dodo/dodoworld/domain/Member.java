@@ -42,6 +42,15 @@ public class Member extends BaseTimeEntity {
 
     private Boolean isDeleted = false;
 
+    // 회원 수정
+    public void memberUpdate(String password, String username, String email, LocalDateTime birth, Address address) {
+        this.password = password;
+        this.username = username;
+        this.email = email;
+        this.birth = birth;
+        this.address = address;
+    }
+
     public Member(String userId, String password, String username, String email, LocalDateTime birth, Address address, List<Board> boards) {
         this.userId = userId;
         this.password = password;

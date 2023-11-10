@@ -8,7 +8,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 public class UpdateBoardDto {
     /**
@@ -18,7 +17,7 @@ public class UpdateBoardDto {
      */
 
     @NotBlank
-    private String writer; // 작성자 id값
+    private Long id; // 게시글 id값
     @NotBlank
     private BoardCategories boardCategories;
     private String content;

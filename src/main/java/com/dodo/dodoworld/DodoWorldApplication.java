@@ -1,5 +1,6 @@
 package com.dodo.dodoworld;
 
+import com.dodo.dodoworld.domain.Member;
 import jakarta.annotation.PostConstruct;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.boot.SpringApplication;

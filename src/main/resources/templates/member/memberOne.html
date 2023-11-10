@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<body>
+    <th:block layout:fragment="content">
+        <h1>게시글 상세 읽기</h1>
+        <table class="table">
+            <tr>
+                <th>###</th>
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>내용</th>
+                <th>좋아요</th>
+                <th>삭제여부</th>
+            </tr>
+            <tr>
+                <td th:text="${board.id}">##</td>
+                <td th:text="${board.title}">제목</td>
+                <td th:text="${board.writer.getUserId()}">글쓴이</td>
+                <td th:text="${board.content}">내용</td>
+                <td th:text="${board.likes}">좋아요</td>
+                <td th:text="${board.isDeleted}">삭제여부</td>
+            </tr>
+        </table>
+    </th:block>
+</body>
+</html>
