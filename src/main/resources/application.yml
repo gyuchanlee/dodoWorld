@@ -12,3 +12,10 @@ spring:
       properties:
         hibernate:
           format_sql: true
+    defer-datasource-initialization: true
+    # 하이버네이트 초기화 이후 data.sql이 실행되도록 변경
+  sql:
+    init:
+      mode: always
+      # 모든 데이터베이스에 sql 스크립트를 동작시킴
+

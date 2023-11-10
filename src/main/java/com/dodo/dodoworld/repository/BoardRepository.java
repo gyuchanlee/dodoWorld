@@ -11,7 +11,8 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    List<Board> findAllByIsDeletedIsFalse(); // 삭제 되지 않은 모든 글 조회.
+    // 삭제 되지 않은 모든 글 조회.
+    List<Board> findAllByIsDeletedIsFalse();
 
     // 페이징
     @Override
@@ -20,4 +21,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     // 개추 버튼
     @Query("update Board b set b.likes = (b.likes + 1) where b.id = :boardId")
     void plusLike(@Param("boardId") Long boardId);
+
+    // 글 삭제 (isDeleted == true)
+    @Query("update Board b set b.isDeleted = true where b.id = :boardId")
+    void boardDelete(@Param("boardId") Long boardId);
 }

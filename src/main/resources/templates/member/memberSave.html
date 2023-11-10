@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<body>
+    <th:block layout:fragment="content">
+
+        <h1 class="mt-4">회원 가입</h1>
+
+        <form action="/members/save" th:action th:object="${board}" method="post" class="form-control">
+            <div>
+                <label for="boardCategories">글 카테고리</label>
+                <input type="text" id="boardCategories" th:field="*{boardCategories}" class="form-control" placeholder="카테고리를 입력하세요">
+            </div>
+            <div>
+                <label for="title">글제목</label>
+                <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
+            </div>
+            <!--   나중에 로그인한 회원만 글 쓸때, 회원 정보에서 닉네임 빼와서 넣기     -->
+            <div>
+                <label for="writer">글쓴이</label>
+                <input type="text" id="writer" th:field="*{writer}" class="form-control" placeholder="글쓴이을 입력하세요">
+            </div>
+            <div>
+                <label for="content">내용</label>
+                <input type="text" id="content" th:field="*{content}" class="form-control" placeholder="내용을 입력하세요">
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col">
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">글 등록</button>
+                </div>
+                <div class="col">
+                    <button class="w-100 btn btn-secondary btn-lg"
+                            th:onclick="|location.href='@{/boards}'|"
+                            type="button">취소</button>
+                </div>
+            </div>
+
+        </form>
+
+    </th:block>
+</body>
+</html>
